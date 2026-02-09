@@ -17,11 +17,29 @@ app.post("/sales", (req,res)=>{
     });
   }
 
+  const numericAmount = Number(amount);
+  const numericSales = Number(salesCount);
+
+  const existingAgent = salesRecords.find(
+    (record) => record.agentName === agentName
+  );
+
+  if (existingAgent) {
+    existingAgent.amount += numericAmount;
+    existingAgent.salesCount += numericSales;
+
+    return res.json({
+      message: "Existing agent updated successfully",
+    });
+  }
+
   salesRecords.push({
-    agentName, amount:Number(amount), salesCount: Number(salesCount)
+    agentName,
+    amount: numericAmount,
+    salesCount: numericSales,
   });
 
-  res.json({ message : "Sales record added successfully"});
+  res.json({ message: "Sales record added successfully" });
 });
 
 
