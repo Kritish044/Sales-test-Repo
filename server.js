@@ -4,8 +4,8 @@ const PORT = 3000;
 
 app.use(express.json());
 
-//Initializing an empty array to store
-const salesRecords = [];
+const salesRecords = [ { agentName: "Alice", amount: 1000, salesCount: 3 },
+  { agentName: "Bob", amount: 800, salesCount: 2 },];
 
 //Creating a POST endpoint for fetching datas
 app.post("/sales", (req,res)=>{
